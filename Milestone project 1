@@ -1,0 +1,320 @@
+from IPython.display import clear_output
+import time
+import random
+    
+
+test_board = ['#','1','2','3','4','5','6','7','8','9']
+player1 = " "
+player2 = " "
+x = 0
+y = 0
+keeploop = False 
+
+# WORKS
+def play_game():
+
+    global y
+    global test_board
+    global keeploop
+    
+    print("Welcome to TIC TAC TOE")
+    print('   |   |  ')
+    print('-----------')
+    print('   |   |  ')
+    print('-----------')
+    print('   |   |  ')
+    print("The most amazing family game for bored people.")
+        
+    while y == 0:
+        
+        
+        startgame = input("Do you wish to start the game? Y/N: ")
+        
+        if startgame == "Y" or startgame == "y":
+            print("Game starts in: 5")
+            time.sleep(1)
+            print("Game starts in: 4")
+            time.sleep(1)
+            print("Game starts in: 3")
+            time.sleep(1)
+            print("Game starts in: 2")
+            time.sleep(1)
+            print("Game starts in: 1")
+            time.sleep(1)
+            print("Game starts in: 0")
+            time.sleep(0.1)
+            place_marker()
+        elif startgame == "N" or startgame == "n":
+            print("Game ending")
+            break
+        else:
+            print("Wrong input")
+            time.sleep(1)
+    
+    while y == 1:
+        replay = input("Do you wish to play again? Y/N: ")
+        
+        if replay == "Y" or replay == "y":
+            change_char = input("Do you want to switch characters? Y/N: ")
+            if change_char == "Y" or change_char == "y":
+                player_input()
+                test_board = ['#','1','2','3','4','5','6','7','8','9']
+                keeploop = False
+                print("RESETING BOARD")
+                time.sleep(2)
+                place_marker()
+            elif change_char == "N" or change_char == "n":
+                test_board = ['#','1','2','3','4','5','6','7','8','9']
+                keeploop = False
+                print("RESETING BOARD")
+                time.sleep(2)
+                place_marker()
+            else:
+                print("Invalid input: ")
+                time.sleep(1)
+        elif replay == "N" or replay == "n":
+            print("Thanks for playing! Game ending...")
+            break
+        else:
+            print("Wrong input")
+            time.sleep(1)
+        
+
+def place_marker():
+
+    x = random.randint(0,1)
+    global player1
+    global test_board
+    
+    if player1 == " ":
+        player_input()
+         
+    while x < 10:
+        
+        time.sleep(2)        
+        clear_output()        
+        display_board()
+        
+             
+        win_condition()
+        
+        if x == 9:
+            
+            break
+            
+        if keeploop == True:
+            
+            break
+                
+        # Decides wich player turn it is
+        if x%2 == 0:
+            playerposition = input("Player 1: ")
+        else:
+            playerposition = input("Player 2: ")
+         
+        
+        # Checks that the value is not a character and is within range
+        if playerposition.isalpha() or int(playerposition) not in range(1,10):
+            print("Choose a number within the range 1-9")
+        
+        
+        elif playerposition == "1" and test_board[1] == "1":
+                if x%2 == 0:
+                    test_board[1] = player1
+                    x += 1
+                else:
+                    test_board[1] = player2
+                    x += 1
+        
+        elif playerposition == "2" and test_board[2] == "2":
+                if x%2 == 0:
+                    test_board[2] = player1
+                    x += 1
+                else:
+                    test_board[2] = player2
+                    x += 1
+
+        elif playerposition == "3" and test_board[3] == "3":
+                if x%2 == 0:
+                    test_board[3] = player1
+                    x += 1
+                else:
+                    test_board[3] = player2
+                    x += 1
+                  
+        elif playerposition == "4" and test_board[4] == "4":
+                if x%2 == 0:
+                    test_board[4] = player1
+                    x += 1
+                    
+                else:
+                    test_board[4] = player2
+                    x += 1
+                   
+        elif playerposition == "5" and test_board[5] == "5":
+                if x%2 == 0:
+                    test_board[5] = player1
+                    x += 1
+                    
+                else:
+                    test_board[5] = player2
+                    x += 1
+                    
+        elif playerposition == "6" and test_board[6] == "6":
+                if x%2 == 0:
+                    test_board[6] = player1
+                    x += 1
+                    
+                else:
+                    test_board[6] = player2
+                    x += 1
+                  
+        elif playerposition == "7" and test_board[7] == "7":
+                if x%2 == 0:
+                    test_board[7] = player1
+                    x += 1
+                    
+                else:
+                    test_board[7] = player2
+                    x += 1
+                    
+        elif playerposition == "8" and test_board[8] == "8":
+                if x%2 == 0:
+                    test_board[8] = player1
+                    x += 1
+                    
+                else:
+                    test_board[8] = player2
+                    x += 1
+            
+        elif playerposition == "9" and test_board[9] == "9":
+                if x%2 == 0:
+                    test_board[9] = player1
+                    x += 1
+                    
+                else:
+                    test_board[9] = player2
+                    x += 1
+                  
+        # Checks if position is occupied
+        else:
+            print("Position taken")
+            
+            
+            
+def player_input():
+    
+    global player1 
+    global player2 
+    choosing_player = 0
+    
+    while choosing_player == 0:
+        player1 = input("Player 1 please pick a marker 'X' or 'O' ")
+        if player1.upper() == 'X': 
+                player2 = 'O'
+                choosing_player += 1
+        elif player1.upper() == 'O':
+                player2 = 'X'
+                choosing_player += 1
+        else:
+            print('Please pick again')
+    if choosing_player == 1:
+        print('Player 1 chose: %s'%player1.upper())
+        print('Player 2 were assigned: %s'%player2.upper())
+    else:
+        print('Player chocies not registered')
+             
+            
+
+            
+def display_board():
+    
+    print("Pick a number between 1-9,")
+    print(f" {test_board[7]} | {test_board[8]} | {test_board[9]} ")
+    print('-----------')
+    print(f" {test_board[4]} | {test_board[5]} | {test_board[6]} ")
+    print('-----------')
+    print(f" {test_board[1]} | {test_board[2]} | {test_board[3]} ")
+
+    
+    
+def win_condition():
+    
+            global keeploop
+            global y
+    
+            # Player 1 win conditions
+    
+            if test_board[1] == player1 and test_board[2] == player1 and test_board[3] == player1:
+                print("player 1 won 1:")
+                y = 1
+                keeploop = True
+            elif test_board[4] == player1 and test_board[5] == player1 and test_board[6] == player1:
+                print("player 1 won 2:")
+                keeploop = True
+                y = 1
+            elif test_board[7] == player1 and test_board[8] == player1 and test_board[9] == player1:
+                print("player 1 won 3:")
+                keeploop = True
+                y = 1
+            elif test_board[1] == player1 and test_board[4] == player1 and test_board[7] == player1:
+                print("player 1 won 4:")
+                keeploop = True
+                y = 1
+            elif test_board[2] == player1 and test_board[5] == player1 and test_board[8] == player1:
+                print("player 1 won 5:")
+                keeploop = True
+                y = 1
+            elif test_board[9] == player1 and test_board[6] == player1 and test_board[3] == player1:
+                print("player 1 won 6:")
+                keeploop = True
+                y = 1
+            elif test_board[1] == player1 and test_board[5] == player1 and test_board[9] == player1:
+                print("player 1 won 7:")
+                keeploop = True
+                y = 1
+            elif test_board[7] == player1 and test_board[5] == player1 and test_board[3] == player1:
+                print("player 1 won 8:")
+                keeploop = True
+                y = 1
+        
+    
+            # Player 2 win conditions
+        
+            elif test_board[1] == player2 and test_board[2] == player2 and test_board[3] == player2:
+                print("player 2 won 1")
+                keeploop = True
+                y = 1
+            elif test_board[4] == player2 and test_board[5] == player2 and test_board[6] == player2:
+                print("player 2 won 2")
+                keeploop = True
+                y = 1
+            elif test_board[7] == player2 and test_board[8] == player2 and test_board[9] == player2:
+                print("player 2 won 3")
+                keeploop = True
+                y = 1
+            elif test_board[1] == player2 and test_board[4] == player2 and test_board[7] == player2:
+                print("player 2 won 4")
+                keeploop = True
+                y = 1
+            elif test_board[2] == player2 and test_board[5] == player2 and test_board[8] == player2:
+                print("player 2 won 5")
+                keeploop = True
+                y = 1
+            elif test_board[9] == player2 and test_board[6] == player2 and test_board[3] == player2:
+                print("player 2 won 6")
+                keeploop = True
+                y = 1
+            elif test_board[1] == player2 and test_board[5] == player2 and test_board[9] == player2:
+                print("player 2 won 7")
+                keeploop = True
+                y = 1
+            elif test_board[7] == player2 and test_board[5] == player2 and test_board[3] == player2:
+                print("player 2 won 8")
+                keeploop = True
+                y = 1
+                
+            # No winner     
+        
+            else:
+                ("TEST")
